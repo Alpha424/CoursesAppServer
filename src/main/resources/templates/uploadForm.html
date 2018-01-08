@@ -1,26 +1,40 @@
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Выбор файла</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap-theme.css" />
+    <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
 <body>
-
-<div th:if="${message}">
-    <h2 th:text="${message}"/>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="page-header">
+                <h1 class="text-primary">Шаг 1</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div th:if="${message}">
+            <div class="alert alert-info" role="alert">
+                <p th:text="${message}"/>
+            </div>
+        </div>
+        <form method="POST" enctype="multipart/form-data" action="/">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Выберите файл Excel для загрузки</h3>
+            </div>
+            <div class="panel-body">
+                <input type="file" name="file"/>
+            </div>
+            <div class="panel-footer">
+                <input type="submit" value="Загрузить файл" class="btn btn-primary" />
+            </div>
+        </div>
+        </form>
+    </div>
 </div>
-
-<div>
-    <form method="POST" enctype="multipart/form-data" action="/">
-        <table>
-            <tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
-            <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
-        </table>
-    </form>
-</div>
-
-<div>
-    <ul>
-        <li th:each="file : ${files}">
-            <a th:href="${file}" th:text="${file}" />
-        </li>
-    </ul>
-</div>
-
 </body>
 </html>
